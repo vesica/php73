@@ -1,0 +1,14 @@
+FROM vesica/php72
+
+### DEV ENVIRONMENT SPECIFIC ###
+################################
+ENV PROVISION_CONTEXT "development"
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+# Add Development PHP.ini
+COPY etc/php/development.ini /usr/local/etc/php/conf.d/development.ini
+
+# Remove Production PHP.ini
+RUN rm -rf /usr/local/etc/php/conf.d/production.ini
+
+################################
