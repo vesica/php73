@@ -1,4 +1,4 @@
-FROM vesica/php72
+FROM quay.io/vesica/php72
 
 ### DEV ENVIRONMENT SPECIFIC ###
 ################################
