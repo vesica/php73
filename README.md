@@ -38,8 +38,8 @@ docker run -d -p 8080:8080 -it --name=php -v $(pwd)/var/www/html:/var/www/html p
 
 
 ## Publish Images
-Run ```sh build.sh``` to update quay.io/vesica/php73:latest (https://hub.docker.com/r/vesica/php73/) as well as the version specified in that file.
-Running ```build.sh``` will also create quay.io/vesica/php73:dev on hub.docker.com which is basically the same image with XDebug.
+Run ```sh build.sh``` to update quay.io/vesica/php73:latest and vesica/php73:latest (https://hub.docker.com/r/vesica/php72/) as well as the version specified in that file.
+Running ```build.sh``` will also create quay.io/vesica/php73:dev and vesica/php73:dev on hub.docker.com which is basically the same image with XDebug.
 
 Please specify the appropriate version for the version number variable in build.sh.
 

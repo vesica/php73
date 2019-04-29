@@ -3,6 +3,7 @@ executors:
   docker-publisher:
     environment:
       IMAGE_NAME: quay.io/vesica/php73
+      IMAGE_NAME_DH: vesica/php73
     docker:
       - image: circleci/buildpack-deps:stretch
 jobs:
@@ -34,10 +35,19 @@ jobs:
           name: Publish Docker Image to Quay.io
           command: |
             echo "$QUAYIO_PASSWORD" | docker login quay.io -u "$QUAYIO_USERNAME" --password-stdin
-            IMAGE_TAG="ci${CIRCLE_BUILD_NUM}"
+            IMAGE_TAG="${CIRCLE_BUILD_NUM}"
             docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
             docker push $IMAGE_NAME:latest
             docker push $IMAGE_NAME:$IMAGE_TAG
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            IMAGE_TAG="${CIRCLE_BUILD_NUM}"
+            docker tag $IMAGE_NAME:latest $IMAGE_NAME_DH:$IMAGE_TAG
+            docker tag $IMAGE_NAME:latest $IMAGE_NAME_DH:latest
+            docker push $IMAGE_NAME_DH:latest
+            docker push $IMAGE_NAME_DH:$IMAGE_TAG
   build-dev:
     executor: docker-publisher
     steps:
@@ -63,14 +73,20 @@ jobs:
           name: Load archived Docker image
           command: docker load -i /tmp/workspace/dev.tar
       - run:
-          name: Publish Docker Image to Quay.io
+          name: Publish Docker Image to QUAY.IO
           command: |
             echo "$QUAYIO_PASSWORD" | docker login quay.io -u "$QUAYIO_USERNAME" --password-stdin
             docker push $IMAGE_NAME:dev
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker tag $IMAGE_NAME:dev $IMAGE_NAME_DH:dev
+            docker push $IMAGE_NAME_DH:dev
 
 workflows:
   version: 2
-  production:
+  build-and-publish:
     jobs:
       - build-production:
           filters:
@@ -83,15 +99,18 @@ workflows:
           filters:
             branches:
               only: master
-  dev:
-    jobs:
       - build-dev:
+          requires:
+            - build-production
+            - publish-production
           filters:
             branches:
               only: master
       - publish-dev:
           context: Docker Hub
           requires:
+            - build-production
+            - publish-production
             - build-dev
           filters:
             branches:
