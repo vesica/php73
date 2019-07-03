@@ -76,9 +76,15 @@ COPY var/www/html/index.php /var/www/html/index.php
 
 EXPOSE 8080
 
+## Add script to deal with Docker Secrets before starting apache
+COPY secrets.sh /usr/local/bin/secrets
+COPY startup.sh /usr/local/bin/startup
+RUN chmod 755 /usr/local/bin/secrets && chmod 755 /usr/local/bin/startup
+
 ### PROD ENVIRONMENT SPECIFIC ###
 ################################
 
 ENV PROVISION_CONTEXT "production"
 
 ################################
+CMD ["startup"]

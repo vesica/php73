@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  simple:
+    image: bb
+    environment:
+      - GREET=DOCKER-SECRET->greeting
+    secrets:
+       - greeting
+secrets:
+   greeting:
+     external: true

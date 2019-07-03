@@ -43,6 +43,10 @@ Running ```build.sh``` will also create quay.io/vesica/php73:dev and vesica/php7
 
 Please specify the appropriate version for the version number variable in build.sh.
 
+## Using Docker Secrets
+This image now supports Docker Swarm Secrets via a modification of https://github.com/rbdiang/docker-secrets-example.
+
+It can be tested in the exact same way using the Example in that repo.
 
 ## Important Information:
 
