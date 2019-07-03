@@ -22,6 +22,8 @@ env_secret_expand() {
         if [ -f "$secret" ]; then
             val=$(cat "${secret}")
             export "$var"="$val"
+            # Add to Apache
+            echo "export $var=$val" >> /etc/apache2/envvars
             env_secret_debug "Expanded variable: $var=$val"
         else
             env_secret_debug "Secret file does not exist! $secret"
