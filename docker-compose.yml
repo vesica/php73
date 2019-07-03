@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   simple:
-    image: bb
+    image: vesica/php73
     environment:
       - GREET=DOCKER-SECRET->greeting
     secrets:
