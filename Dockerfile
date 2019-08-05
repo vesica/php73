@@ -13,6 +13,11 @@ RUN apt-get upgrade && apt-get update && ACCEPT_EULA=Y && apt-get install -y \
         libxml2-dev \
         libxslt-dev \
         libtidy-dev \
+        libssl-dev \
+        zlib1g-dev \
+        libpng-dev \
+        libjpeg-dev \
+        libfreetype6-dev \
         libaio1 \
         apt-file \
         wget \
