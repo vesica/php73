@@ -1,5 +1,6 @@
 [![CircleCI](https://circleci.com/gh/vesica/php73.svg?style=shield)](https://circleci.com/gh/vesica/php73)
 [![](https://img.shields.io/github/license/vesica/php73.svg)](https://github.com/vesica/php73/blob/master/LICENSE.txt)
+![Docker Pulls](https://img.shields.io/docker/pulls/vesica/php73)
 
 # PHP 7.3 Docker Image with Apache
 
