@@ -35,7 +35,7 @@ RUN pecl install redis \
     && pecl install timezonedb
 
 RUN docker-php-ext-install -j$(nproc) calendar iconv bcmath xml gd mbstring pdo tidy gettext intl pdo pdo_mysql mysqli simplexml tokenizer xml xsl xmlwriter zip opcache exif \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-gd --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-configure gd --with-freetype-dir --with-gd --with-jpeg-dir \
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-enable redis geoip apcu memcached timezonedb
 
