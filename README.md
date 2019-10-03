@@ -104,6 +104,7 @@ The following modules / extensions / PECLs are enabled on this container (exclud
 * pdo_mysql 
 * mysqli 
 * simplexml 
+* sockets
 * tokenizer 
 * xml 
 * xmlwriter 
@@ -112,6 +113,7 @@ The following modules / extensions / PECLs are enabled on this container (exclud
 #### PECLs
 * Redis
 * GeoIP
+* gRPC
 * Memcached
 * TimezoneDB
 * APCu
