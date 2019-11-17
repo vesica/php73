@@ -83,7 +83,7 @@ Less RAM will result in usage of SWAP on disk if you hit more than 150 requests,
 
 If you expect more than 150 requests a second (or at one time) with a single instance, they will be queued. Alternatively, you can scale horizontally and deploy multiple instances.
 
-You can also extend this container and overwrite these settings using your own Dockerfile. See, for instance, the Dockerfile in this project: https://github.com/islamic.network/alquran.cloud.
+You can also extend this container and overwrite these settings using your own Dockerfile. See, for instance, the Dockerfile in this project: https://github.com/islamic-network/alquran.cloud.
 
 ### PHP Modules and Extensions
  
